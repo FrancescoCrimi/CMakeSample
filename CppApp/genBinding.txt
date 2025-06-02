@@ -1,0 +1,4 @@
+ClangSharpPInvokeGenerator --file .\MyClass.hpp  --namespace TestBindings --output TestBindings.cs
+
+to test:
+clang++ -fsyntax-only -I c:\Vcpkg\installed\x64-windows\include C:\Vcpkg\installed\x64-windows\include\SQLiteCpp\SQLiteCpp.h

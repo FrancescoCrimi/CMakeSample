@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  interface.ui
+
+  Questo file definisce l'interfaccia per la BuilderWindow.
+  
+  Contiene:
+    - Un contenitore GtkBox con id "builder_container" con orientamento verticale,
+      margini (20) e spacing (10)
+    - Una GtkLabel con id "builder_label" e testo iniziale "Initial text (Builder)"
+    - Un GtkButton con id "builder_dialog_button" etichettato "Show Dialog"
+    - Un GtkButton con id "builder_exit_button" etichettato "Exit"
+-->
+<interface>
+  <requires lib="gtkmm" version="4.0"/>
+  <object class="GtkBox" id="builder_container">
+    <property name="orientation">vertical</property>
+    <property name="spacing">10</property>
+    <property name="margin_top">20</property>
+    <property name="margin_bottom">20</property>
+    <property name="margin_start">20</property>
+    <property name="margin_end">20</property>
+    <child>
+      <object class="GtkLabel" id="main_label">
+        <property name="label">Initial text (Builder)</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="dialog_button">
+        <property name="label">Show Dialog</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="exit_button">
+        <property name="label">Exit</property>
+      </object>
+    </child>
+  </object>
+</interface>

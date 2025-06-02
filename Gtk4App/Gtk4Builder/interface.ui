@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- Richiede GTK4 versione 4.0 o superiore -->
+  <requires lib="gtk" version="4.0"/>
+  <!-- Finestra principale -->
+  <object class="GtkWindow" id="main_window">
+    <property name="title">GTK4 Builder Example</property>
+    <property name="default-width">400</property>
+    <property name="default-height">200</property>
+    <!-- Contenitore: GtkBox verticale, centrato -->
+    <child>
+      <object class="GtkBox" id="vbox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <!-- La label principale -->
+        <child>
+          <object class="GtkLabel" id="main_label">
+            <property name="label">Initial text</property>
+          </object>
+        </child>
+        <!-- Pulsante per aprire un old Dialog -->
+        <child>
+          <object class="GtkButton" id="show_message_dialog_button">
+            <property name="label">Show MessageDialog</property>
+          </object>
+        </child>
+        <!-- Pulsante per aprire un AlertDialog -->
+        <child>
+          <object class="GtkButton" id="show_alert_dialog_button">
+            <property name="label">Show AlertDialog</property>
+          </object>
+        </child>
+        <!-- Pulsante per uscire -->
+        <child>
+          <object class="GtkButton" id="exit_button">
+            <property name="label">Exit</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
