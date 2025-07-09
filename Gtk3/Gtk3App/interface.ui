@@ -12,31 +12,24 @@
 -->
 <interface>
   <!-- Specifica il requisito: GTK+ usato deve essere di versione almeno 3.24 -->
-  <requires lib="gtk+" version="3.24"/>
-  
+  <requires lib="gtk+" version="3.24" />
   <!-- Definizione dell'oggetto principale: una finestra -->
-  <object class="GtkWindow" id="main_window">
-    <!-- Imposta il titolo della finestra -->
+  <object class="GtkWindow" id="first_window">
     <property name="title">GTK3 Builder Example</property>
-    <!-- Imposta dimensioni predefinite -->
-    <property name="default_width">400</property>
+    <property name="default_width">300</property>
     <property name="default_height">200</property>
     <child>
       <!-- Definizione di un contenitore verticale (GtkBox) -->
       <object class="GtkBox" id="vbox">
-        <!-- Disposizione verticale degli elementi -->
         <property name="orientation">vertical</property>
-        <!-- Spazio (spacing) tra i widget -->
-        <property name="spacing">10</property>
-        <!-- Imposta un margine interno per il contenitore -->
-        <property name="border_width">20</property>
+        <property name="spacing">15</property>
+        <property name="border_width">15</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <!-- Primo figlio: la label per visualizzare il testo -->
         <child>
           <object class="GtkLabel" id="main_label">
             <property name="label">Initial text</property>
-            <!-- Centra orizzontalmente la label -->
             <property name="halign">center</property>
           </object>
         </child>

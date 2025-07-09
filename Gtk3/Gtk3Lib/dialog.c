@@ -32,7 +32,7 @@ static void on_dialog_response(GtkDialog *dialog, gint response_id, gpointer use
     gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-void show_dialog(AppWidgets *appWidgets)
+void show_dialog(MyContextObject *appWidgets)
 {
     /* Crea il dialogo impostato come modale, associato alla finestra principale.
        Il dialogo è di tipo "question" e non usa i pulsanti predefiniti (GTK_BUTTONS_NONE) */

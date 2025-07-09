@@ -47,21 +47,8 @@ GtkWindow *create_main_window(GtkApplication *app)
 
     // Crea la finestra principale dell'applicazione
     main_window = GTK_WINDOW(gtk_application_window_new(app)); // Associa la finestra all'applicazione
-    gtk_window_set_title(main_window, "Applicazione Principale Modulare");
-    gtk_window_set_default_size(main_window, 400, 250);
-    // GTK3
-    // gtk_container_set_border_width(GTK_CONTAINER(main_window), 15);
-    // In GTK 4, gtk_container_set_border_width è deprecato. Si usano i margini del widget.
-    gtk_widget_set_margin_bottom(GTK_WIDGET(main_window), 15);
-    gtk_widget_set_margin_top(GTK_WIDGET(main_window), 15); 
-    gtk_widget_set_margin_start(GTK_WIDGET(main_window), 15); 
-    gtk_widget_set_margin_end(GTK_WIDGET(main_window), 15); 
-
-    //GTK3
-    // Connette il segnale "destroy" della finestra principale per terminare l'applicazione
-    // Quando la finestra principale viene chiusa, l'intera applicazione termina.
-    // g_signal_connect(main_window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    // GTK4
+    gtk_window_set_title(main_window, "Applicazione Gtk4");
+    gtk_window_set_default_size(main_window, 300, 250);
     // Connette il segnale "close-request" della finestra principale.
     // Questo segnale viene emesso quando l'utente tenta di chiudere la finestra.
     // gtk_window_destroy distrugge la finestra. Poiché è una GtkApplicationWindow,
@@ -69,10 +56,13 @@ GtkWindow *create_main_window(GtkApplication *app)
     g_signal_connect(main_window, "close-request", G_CALLBACK(gtk_window_destroy), NULL);
 
     // Crea un GtkBox per organizzare i widget verticalmente
-    vbox = GTK_BOX(gtk_box_new(GTK_ORIENTATION_VERTICAL, 10)); // Spaziatura di 10 pixel tra i widget
+    vbox = GTK_BOX(gtk_box_new(GTK_ORIENTATION_VERTICAL, 15));
+    gtk_widget_set_margin_bottom(GTK_WIDGET(vbox), 15);
+    gtk_widget_set_margin_top(GTK_WIDGET(vbox), 15); 
+    gtk_widget_set_margin_start(GTK_WIDGET(vbox), 15); 
+    gtk_widget_set_margin_end(GTK_WIDGET(vbox), 15); 
     gtk_widget_set_halign(GTK_WIDGET(vbox), GTK_ALIGN_CENTER);
     gtk_widget_set_valign(GTK_WIDGET(vbox), GTK_ALIGN_CENTER);
-    // gtk_container_add(GTK_CONTAINER(main_window), vbox);
     gtk_window_set_child(main_window, GTK_WIDGET(vbox));
 
     // Crea la label di benvenuto
@@ -80,25 +70,25 @@ GtkWindow *create_main_window(GtkApplication *app)
     // Imposta il testo della label in grassetto per renderlo più evidente
     gtk_label_set_markup(GTK_LABEL(welcome_label), "<big><b>Finestra Principale</b></big>");
     // gtk_box_pack_start(GTK_BOX(vbox), welcome_label, FALSE, FALSE, 0); // Non espandere, non riempire
-    gtk_box_append(vbox, GTK_WIDGET(welcome_label));
+    gtk_box_append(vbox, welcome_label);
 
     // Crea il primo pulsante
     button_one = gtk_button_new_with_label("Apri Finestra Uno");
     // Passa la finestra principale come user_data alla callback del pulsante
     g_signal_connect(button_one, "clicked", G_CALLBACK(on_button_one_clicked), main_window);
     // gtk_box_pack_start(GTK_BOX(vbox), button_one, TRUE, TRUE, 0); // Espandi e riempi
-    gtk_box_append(vbox, GTK_WIDGET(button_one));
+    gtk_box_append(vbox, button_one);
 
     // Crea il secondo pulsante
     button_two = gtk_button_new_with_label("Apri Finestra Due");
     g_signal_connect(button_two, "clicked", G_CALLBACK(on_button_two_clicked), main_window);
     // gtk_box_pack_start(GTK_BOX(vbox), button_two, TRUE, TRUE, 0); // Espandi e riempi
-    gtk_box_append(vbox, GTK_WIDGET(button_two));
+    gtk_box_append(vbox, button_two);
 
     // Crea pulsante Exit
     exit_button = gtk_button_new_with_label("Exit");
     g_signal_connect_swapped(exit_button, "clicked", G_CALLBACK(gtk_window_destroy), main_window);
-    gtk_box_append(vbox, GTK_WIDGET(exit_button));
+    gtk_box_append(vbox, exit_button);
 
     // Mostra Finestra
     gtk_window_present(main_window);

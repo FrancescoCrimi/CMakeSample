@@ -16,37 +16,41 @@
  * Il codice è scritto in standard C (C17).
  */
 
-#include "window.h"
+#include "main_window.h"
 
 /**
- * Callback "on_app_activate":
- * Funzione chiamata quando l'applicazione viene attivata.
+ * @brief Funzione di attivazione dell'applicazione GTK.
+ * Viene chiamata quando l'applicazione viene avviata.
+ * @param app Il puntatore all'oggetto GtkApplication.
+ * @param user_data Dati utente (non usati in questo caso).
  */
 static void on_app_activate(GtkApplication *app, gpointer user_data)
 {
-    GtkWidget *window = GTK_WIDGET(get_window(GTK_APPLICATION(app)));
-
-    if (window)
-    {
-        // Mostra la finestra principale con tutti i widget al suo interno
-        gtk_widget_show_all(window);
-    }
+    // Chiama la funzione per creare e mostrare la finestra principale.
+    // Questa funzione è definita in main_window.c
+    create_main_window(app);
 }
 
 /**
- * Funzione main: punto d'ingresso dell'applicazione.
- * Crea un'istanza di GtkApplication, connette il segnale "activate" e avvia il ciclo degli eventi.
+ * @brief Funzione Main del programma.
+ * Punto di ingresso dell'applicazione.
+ * @param argc Il numero di argomenti della riga di comando.
+ * @param argv Gli argomenti della riga di comando.
+ * @return Lo stato di uscita dell'applicazione.
  */
 int main(int argc, char *argv[])
 {
+    GtkApplication *app;
+    int status;
+
     // Crea una nuova istanza dell'applicazione con un ID e flag standard
-    GtkApplication *app = gtk_application_new("com.example.gtk3.builder", G_APPLICATION_DEFAULT_FLAGS);
+    app = gtk_application_new("com.example.gtk3.builder", G_APPLICATION_DEFAULT_FLAGS);
 
     // Collega l'evento "activate" alla funzione "on_app_activate"
     g_signal_connect(app, "activate", G_CALLBACK(on_app_activate), NULL);
 
     // Avvia l'applicazione e ne attende la chiusura, salvando il valore di ritorno
-    int status = g_application_run(G_APPLICATION(app), argc, argv);
+    status = g_application_run(G_APPLICATION(app), argc, argv);
 
     // Libera l'oggetto app
     g_object_unref(app);

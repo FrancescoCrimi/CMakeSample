@@ -9,6 +9,5 @@
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 
-add_subdirectory(common)
-add_subdirectory(builder)
-add_subdirectory(manual)
+add_subdirectory(Gtk3Lib)
+add_subdirectory(Gtk3App)
