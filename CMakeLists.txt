@@ -40,10 +40,10 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # add_subdirectory(c_app)          # Esempio: un eseguibile scritto interamente in C
 # add_subdirectory(cpp_app)        # Esempio: un eseguibile scritto interamente in C++
 
-add_subdirectory(CApp)
-add_subdirectory(CppApp)
-add_subdirectory(Gtk3App)
+# add_subdirectory(CApp)
+# add_subdirectory(CppApp)
+# add_subdirectory(Gtk3App)
 add_subdirectory(Gtk4App)
-add_subdirectory(GtkmmApp)
-add_subdirectory(SQLiteApp)
+# add_subdirectory(GtkmmApp)
+# add_subdirectory(SQLiteApp)
 # add_subdirectory(SQLiteCppApp)

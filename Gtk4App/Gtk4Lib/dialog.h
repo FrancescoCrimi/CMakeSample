@@ -26,7 +26,7 @@ typedef struct
 {
     GtkWindow *window;
     GtkLabel *label;
-} AppWidgets;
+} MyContextObject;
 
 /**
  * @brief Mostra un MessageDialog
@@ -38,7 +38,7 @@ typedef struct
  * 
  * @param widgets struttura contenente la finestra e la label
  */
-MYLIB_API void show_message_dialog(AppWidgets *widgets);
+MYLIB_API void show_message_dialog(MyContextObject *widgets);
 
 /**
  * @brief Mostra un moderno AlertDialog
@@ -50,6 +50,6 @@ MYLIB_API void show_message_dialog(AppWidgets *widgets);
  *
  * @param widgets struttura contenente la finestra e la label
  */
-MYLIB_API void show_alert_dialog(AppWidgets *widgets);
+MYLIB_API void show_alert_dialog(MyContextObject *widgets);
 
 #endif /* DIALOG_H */

@@ -69,7 +69,7 @@ static void on_alert_dialog_choose(GObject *source_object, GAsyncResult *res, gp
         gtk_label_set_text(label, "Unknown response");
 }
 
-void show_message_dialog(AppWidgets *widgets)
+void show_message_dialog(MyContextObject *widgets)
 {
     /* Crea il dialogo impostato come modale, associato alla finestra principale.
        Il dialogo è di tipo "question" e non usa i pulsanti predefiniti (GTK_BUTTONS_NONE) */
@@ -100,7 +100,7 @@ void show_message_dialog(AppWidgets *widgets)
     gtk_window_present(GTK_WINDOW(dialog));
 }
 
-void show_alert_dialog(AppWidgets *widgets)
+void show_alert_dialog(MyContextObject *widgets)
 {
     GtkAlertDialog *dialog = gtk_alert_dialog_new("Confirm");
     const char *buttons[] = {"_Yes", "_No", "_Cancel", NULL};

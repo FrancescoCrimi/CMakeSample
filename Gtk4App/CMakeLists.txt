@@ -19,8 +19,6 @@ pkg_check_modules(GTK4 REQUIRED gtk4)
 # endif()
 
 # Includi le cartelle dei due eseguibili
-add_subdirectory(Gtk4Builder)
-add_subdirectory(Gtk4Manual)
-add_subdirectory(Gtk4MyDialog)
-
-add_subdirectory(Gtk4Example)
+add_subdirectory(Gtk4App)
+add_subdirectory(Gtk4Lib)
+# add_subdirectory(Gtk4Example)
