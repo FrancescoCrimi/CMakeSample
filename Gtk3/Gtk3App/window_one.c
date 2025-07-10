@@ -1,4 +1,4 @@
-#include "first_window.h"
+#include "window_one.h"
 #include "dialog.h"
 
 /**
@@ -6,7 +6,7 @@
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_first_window(GtkWindow *parent_window)
+GtkWindow *create_window_one(GtkWindow *parent_window)
 {
     GtkBuilder *builder;
     GtkWindow *window;
@@ -43,7 +43,7 @@ GtkWindow *create_first_window(GtkWindow *parent_window)
     // Libera le risorse allocate per il builder
     g_object_unref(builder);
 
-    gtk_widget_show_all(window);
+    gtk_widget_show_all(GTK_WIDGET(window));
 
     return window;
 }

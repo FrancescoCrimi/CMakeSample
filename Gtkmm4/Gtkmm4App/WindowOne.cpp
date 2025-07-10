@@ -1,15 +1,15 @@
-#include "BuilderWindow.hpp"
+#include "WindowOne.hpp"
 #include <gtkmm/builder.h>
 #include <iostream>
 #include <filesystem>
 #include <glibmm/main.h>
 #include <exception>
 
-BuilderWindow::BuilderWindow()
+WindowOne::WindowOne()
     : Gtk::Window(), pLabel(), pDialogButton(), pExitButton()
 {
     set_title("Builder Window");
-    set_default_size(400, 300);
+    set_default_size(300, 250);
 
     // Verifica l'esistenza del file di interfaccia
     if (!std::filesystem::exists("interface.ui"))
@@ -46,11 +46,11 @@ BuilderWindow::BuilderWindow()
 
         // Collega il segnale "clicked" del pulsante "Show Dialog" al callback on_dialog_button_clicked.
         pDialogButton->signal_clicked().connect(
-            sigc::mem_fun(*this, &BuilderWindow::on_dialog_button_clicked));
+            sigc::mem_fun(*this, &WindowOne::on_dialog_button_clicked));
 
         // Collega il segnale "clicked" del pulsante "Exit" al callback on_exit_button_clicked.
         pExitButton->signal_clicked().connect(
-            sigc::mem_fun(*this, &BuilderWindow::on_exit_button_clicked));
+            sigc::mem_fun(*this, &WindowOne::on_exit_button_clicked));
     }
     catch (const Gtk::BuilderError &ex)
     {
@@ -64,12 +64,12 @@ BuilderWindow::BuilderWindow()
     }
 }
 
-BuilderWindow::~BuilderWindow()
+WindowOne::~WindowOne()
 {
     // I Glib::RefPtr interni gestiscono l'ownership dei widget caricati.
 }
 
-void BuilderWindow::on_dialog_button_clicked()
+void WindowOne::on_dialog_button_clicked()
 {
     // Crea sul heap un nuovo Gtk::MessageDialog associato alla finestra principale.
     Gtk::MessageDialog *pDialog = new Gtk::MessageDialog(*this,
@@ -91,7 +91,7 @@ void BuilderWindow::on_dialog_button_clicked()
         "And this is the secondary text that explains things.");
 
     pDialog->signal_response().connect(
-        sigc::bind(sigc::mem_fun(*this, &BuilderWindow::on_dialog_response), pDialog));
+        sigc::bind(sigc::mem_fun(*this, &WindowOne::on_dialog_response), pDialog));
     pDialog->show();
 }
 
@@ -99,7 +99,7 @@ void BuilderWindow::on_dialog_button_clicked()
  * BuilderApp::on_dialog_response()
  * Gestisce la risposta del dialogo aggiornando la label e deallocando il dialogo in sicurezza.
  */
-void BuilderWindow::on_dialog_response(int response, Gtk::MessageDialog *pDialog)
+void WindowOne::on_dialog_response(int response, Gtk::MessageDialog *pDialog)
 {
     switch (response)
     {
@@ -134,7 +134,7 @@ void BuilderWindow::on_dialog_response(int response, Gtk::MessageDialog *pDialog
  * BuilderApp::on_exit_button_clicked()
  * Chiude la finestra principale.
  */
-void BuilderWindow::on_exit_button_clicked()
+void WindowOne::on_exit_button_clicked()
 {
     close();
 }

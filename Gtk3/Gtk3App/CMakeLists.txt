@@ -1,11 +1,11 @@
-set(APP_SOURCE
-    second_window.c
-    first_window.c
+set(GTK3APP_SOURCE
+    window_two.c
+    window_one.c
     main_window.c
     main.c
 )
 
-add_executable(Gtk3App ${APP_SOURCE})
+add_executable(Gtk3App ${GTK3APP_SOURCE})
 
 target_compile_options(Gtk3App PRIVATE ${GTK3_CFLAGS_OTHER})
 target_include_directories(Gtk3App PRIVATE ${GTK3_INCLUDE_DIRS})

@@ -1,5 +1,5 @@
-#ifndef SECOND_WINDOW_H
-#define SECOND_WINDOW_H
+#ifndef WINDOW_TWO_H
+#define WINDOW_TWO_H
 
 #include <gtk/gtk.h>
 
@@ -10,6 +10,6 @@
  *   - Crea e posiziona una label e due pulsanti
  *   - Collega i relativi segnali
  */
-GtkWindow *create_second_window(GtkWindow *parent_window);
+GtkWindow *create_window_two(GtkWindow *parent_window);
 
-#endif /* SECOND_WINDOW_H */
+#endif /* WINDOW_TWO_H */

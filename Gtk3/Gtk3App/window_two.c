@@ -1,4 +1,4 @@
-#include "second_window.h"
+#include "window_two.h"
 #include "dialog.h"
 
 /**
@@ -6,7 +6,7 @@
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_second_window(GtkWindow *parent_window)
+GtkWindow *create_window_two(GtkWindow *parent_window)
 {
     GtkWidget *window;
     GtkWidget *vbox;
@@ -40,7 +40,7 @@ GtkWindow *create_second_window(GtkWindow *parent_window)
 
     // Struttura per i widget utili con malloc
     shared_context = g_new0(MyContextObject, 1);
-    shared_context->window = window;
+    shared_context->window = GTK_WINDOW(window);
     shared_context->label = label;
 
 

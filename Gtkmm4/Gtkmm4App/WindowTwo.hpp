@@ -1,5 +1,5 @@
-#ifndef MANUALWINDOW_H
-#define MANUALWINDOW_H
+#ifndef WINDOWTWO_H
+#define WINDOWTWO_H
 
 #include <gtkmm/application.h>
 #include <gtkmm/window.h>
@@ -9,7 +9,7 @@
 #include <gtkmm/messagedialog.h>
 
 /*
- * ManualWindow
+ * WindowTwo
  *
  * Questa finestra viene realizzata interamente in codice.
  * Mostra una label e due pulsanti: "Show Dialog" e "Exit".
@@ -17,11 +17,11 @@
  * "Show Dialog" crea un MessageDialog (modale) la cui risposta aggiorna la label;
  * la deallocazione del dialog avviene in modo sicuro tramite Glib::signal_idle().
  */
-class ManualWindow : public Gtk::Window
+class WindowTwo : public Gtk::Window
 {
 public:
-    ManualWindow();
-    virtual ~ManualWindow();
+    WindowTwo();
+    virtual ~WindowTwo();
 
 protected:
     // Callback per il pulsante "Show Dialog".
@@ -38,4 +38,4 @@ protected:
     Gtk::Button *m_pExitButton;
 };
 
-#endif // MANUALWINDOW_H
+#endif // WINDOWTWO_H

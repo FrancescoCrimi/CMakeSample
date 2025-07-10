@@ -12,14 +12,16 @@
     - Un GtkButton con id "builder_exit_button" etichettato "Exit"
 -->
 <interface>
-  <requires lib="gtkmm" version="4.0"/>
+  <requires lib="gtkmm" version="4.0" />
   <object class="GtkBox" id="builder_container">
     <property name="orientation">vertical</property>
-    <property name="spacing">10</property>
-    <property name="margin_top">20</property>
-    <property name="margin_bottom">20</property>
-    <property name="margin_start">20</property>
-    <property name="margin_end">20</property>
+    <property name="spacing">15</property>
+    <property name="margin_top">15</property>
+    <property name="margin_bottom">15</property>
+    <property name="margin_start">15</property>
+    <property name="margin_end">15</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
     <child>
       <object class="GtkLabel" id="main_label">
         <property name="label">Initial text (Builder)</property>

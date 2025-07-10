@@ -1,11 +1,10 @@
-set(BUILDER_SOURCE
-    second_window.c
-    first_window.c
+set(GTK4APP_SOURCE
+    window_two.c
+    window_one.c
     main_window.c
-    main.c
-)
+    main.c)
 
-add_executable(Gtk4App ${BUILDER_SOURCE})
+add_executable(Gtk4App ${GTK4APP_SOURCE})
 
 target_compile_options(Gtk4App PRIVATE ${GTK4_CFLAGS_OTHER})
 target_include_directories(Gtk4App PRIVATE ${GTK4_INCLUDE_DIRS})

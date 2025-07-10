@@ -1,12 +1,12 @@
 #include <gtkmm/application.h>
-#include "MainHubWindow.hpp"
+#include "MainWindow.hpp"
 
 int main(int argc, char *argv[])
 {
     auto app = Gtk::Application::create("com.example.gtkmm4.combined");
-    // MainHubWindow main_window;
+    // MainWindow main_window;
     // return app->run(main_window);
-    return app->make_window_and_run<MainHubWindow>(argc, argv);
+    return app->make_window_and_run<MainWindow>(argc, argv);
 }
 
 #ifdef _WIN32

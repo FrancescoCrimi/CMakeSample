@@ -1,6 +1,6 @@
 #include "main_window.h"   // Include l'header di questo modulo
-#include "first_window.h"  // Include l'header della prima finestra secondaria
-#include "second_window.h" // Include l'header della seconda finestra secondaria
+#include "window_one.h"  // Include l'header della prima finestra secondaria
+#include "window_two.h" // Include l'header della seconda finestra secondaria
 #include <gtk/gtk.h>       // Necessario per le funzioni GTK
 
 // --- Callback per i pulsanti della finestra principale ---
@@ -15,7 +15,7 @@ static void on_button_one_clicked(GtkButton *button, gpointer user_data)
     GtkWindow *main_window = GTK_WINDOW(user_data);
     g_print("Pulsante 'Apri Finestra Uno' cliccato.\n");
     // Chiama la funzione per creare la prima finestra, definita in first_window.c
-    create_first_window(main_window);
+    create_window_one(main_window);
 }
 
 /**
@@ -28,7 +28,7 @@ static void on_button_two_clicked(GtkButton *button, gpointer user_data)
     GtkWindow *main_window = GTK_WINDOW(user_data);
     g_print("Pulsante 'Apri Finestra Due' cliccato.\n");
     // Chiama la funzione per creare la seconda finestra, definita in secondary_window.c
-    create_second_window(main_window);
+    create_window_two(main_window);
 }
 
 /**
