@@ -26,16 +26,16 @@ public:
     virtual ~WindowOne();
 
 protected:
-    // Callback per il pulsante "Show Dialog".
-    void on_dialog_button_clicked();
-    // Callback per il segnale "response" del MessageDialog
-    void on_dialog_response(int res, Gtk::MessageDialog *pDialog);
+    // Callback per il pulsante "Show MessageDialog".
+    void on_message_dialog_button_clicked();
+    // Callback per il segnale "response" di MessageDialog
+    void on_message_dialog_response(int res, Gtk::MessageDialog *pDialog);
     // Callback per il pulsante "Exit".
     void on_exit_button_clicked();
 
     // Membri per memorizzare i widget principali ottenuti dal file UI.
     Glib::RefPtr<Gtk::Label> pLabel;
-    Glib::RefPtr<Gtk::Button> pDialogButton;
+    Glib::RefPtr<Gtk::Button> pMessageDialogButton;
     Glib::RefPtr<Gtk::Button> pExitButton;
 };
 

@@ -12,4 +12,4 @@ pkg_check_modules(GTKMM4 REQUIRED gtkmm-4.0)
 
 # Includi le cartelle dei due eseguibili
 add_subdirectory(Gtkmm4App)
-# add_subdirectory(AlertDialogExample)
+add_subdirectory(AlertDialogExample)
