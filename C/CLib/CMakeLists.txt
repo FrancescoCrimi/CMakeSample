@@ -6,10 +6,10 @@ set(CLIB_SOURCES
 )
 
 # Crea la libreria condivisa (DLL su Windows) a partire dai sorgenti num.c e str.c
-add_library(clib SHARED ${CLIB_SOURCES})
+add_library(CLib SHARED ${CLIB_SOURCES})
 
 # Definisce la macro che abilita l'esportazione dei simboli durante la compilazione della DLL
-target_compile_definitions(clib PRIVATE CLIB_EXPORTS)
+target_compile_definitions(CLib PRIVATE CLIB_EXPORTS)
 
 # Imposta la directory corrente come include directory pubblica
-target_include_directories(clib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(CLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
