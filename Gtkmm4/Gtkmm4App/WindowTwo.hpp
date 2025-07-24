@@ -35,6 +35,8 @@ private:
 
     Gtk::MessageDialog *m_pMessageDialog = nullptr;
     // std::unique_ptr<Gtk::MessageDialog> m_pMessageDialog;
+
+    // Glib::RefPtr<Gtk::AlertDialog> m_pAlertDialog;
 };
 
 #endif // WINDOWTWO_H
