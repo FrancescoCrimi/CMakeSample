@@ -5,54 +5,36 @@
 #include <gtkmm/alertdialog.h>
 #include <gtkmm/error.h>
 
-/*
- * ManualApp::ManualApp()
- * Costruttore: inizializza i puntatori a nullptr.
- */
-WindowTwo::WindowTwo()
-    : Gtk::Window(), m_pBox(nullptr), m_pLabel(nullptr),
-      m_pMessageDialogButton(nullptr), m_pAlertDialogButton(nullptr), m_pExitButton(nullptr)
+WindowTwo::WindowTwo() : m_Label("Initial text")
 {
-    set_title("GTKMM4 Manual Example");
+    set_title("Manual Window");
     set_default_size(300, 250);
 
-    // Crea un contenitore verticale con margini e spacing
-    m_pBox = new Gtk::Box(Gtk::Orientation::VERTICAL, 15);
-    m_pBox->set_margin_top(15);
-    m_pBox->set_margin_bottom(15);
-    m_pBox->set_margin_start(15);
-    m_pBox->set_margin_end(15);
-    m_pBox->set_halign(Gtk::Align::CENTER);
-    m_pBox->set_valign(Gtk::Align::CENTER);
-    set_child(*m_pBox);
+    Gtk::Box box(Gtk::Orientation::VERTICAL, 15);
+    box.set_margin_top(15);
+    box.set_margin_bottom(15);
+    box.set_margin_start(15);
+    box.set_margin_end(15);
+    box.set_halign(Gtk::Align::CENTER);
+    box.set_valign(Gtk::Align::CENTER);
+    set_child(box);
 
-    // Crea e aggiunge la label
-    m_pLabel = new Gtk::Label("Initial text");
-    m_pBox->append(*m_pLabel);
+    box.append(m_Label);
 
-    // Crea il pulsante "Show MessageDialog" e lo aggiunge al contenitore
-    m_pMessageDialogButton = new Gtk::Button("Show MessageDialog");
-    m_pBox->append(*m_pMessageDialogButton);
-
-    // Crea il pulsante "Show AlertDialog" e lo aggiunge al contenitore
-    m_pAlertDialogButton = new Gtk::Button("Show AlertDialog");
-    m_pBox->append(*m_pAlertDialogButton);
-
-    // Crea il pulsante "Exit" e lo aggiunge al contenitore.
-    m_pExitButton = new Gtk::Button("Exit");
-    m_pBox->append(*m_pExitButton);
-
-    // Connette il segnale "clicked" al metodo on_message_dialog_button_clicked.
-    m_pMessageDialogButton->signal_clicked().connect(
+    Gtk::Button messageDialogButton("Show MessageDialog");
+    messageDialogButton.signal_clicked().connect(
         sigc::mem_fun(*this, &WindowTwo::on_message_dialog_button_clicked));
+    box.append(messageDialogButton);
 
-    // Connete il segnale "clicked" al metodo on_alert_dialog_button_clicked.
-    m_pAlertDialogButton->signal_clicked().connect(
+    Gtk::Button alertDialogButton("Show AlertDialog");
+    alertDialogButton.signal_clicked().connect(
         sigc::mem_fun(*this, &WindowTwo::on_alert_dialog_button_clicked));
+    box.append(alertDialogButton);
 
-    // Connette il segnale "clicked" del pulsante "Exit".
-    m_pExitButton->signal_clicked().connect(
-        sigc::mem_fun(*this, &WindowTwo::on_exit_button_clicked));
+    Gtk::Button exitButton("Exit");
+    exitButton.signal_clicked().connect(
+        sigc::mem_fun(*this, &WindowTwo::close));
+    box.append(exitButton);
 }
 
 WindowTwo::~WindowTwo()
@@ -63,30 +45,31 @@ WindowTwo::~WindowTwo()
 void WindowTwo::on_message_dialog_button_clicked()
 {
     // Crea un dialogo associato alla finestra principale.
-    Gtk::MessageDialog *messageDialog = new Gtk::MessageDialog(*this,
-                                                               "This is an MessageDialog.",
-                                                               false,                      // Nessun testo secondario
-                                                               Gtk::MessageType::QUESTION, // Tipo di messaggio: domanda
-                                                               Gtk::ButtonsType::NONE);    // Nessun pulsante predefinito
-    // Rende il dialogo modale e lo lega alla finestra corrente
-    messageDialog->set_modal(true);
-    messageDialog->set_transient_for(*this);
+    m_pMessageDialog = Gtk::make_managed<Gtk::MessageDialog>(*this,
+                                                             "This is an MessageDialog.",
+                                                             false,                      // Nessun testo secondario
+                                                             Gtk::MessageType::QUESTION, // Tipo di messaggio: domanda
+                                                             Gtk::ButtonsType::NONE,     // Nessun pulsante predefinito
+                                                             true);                      // modal
+
+    // m_pMessageDialog = std::make_unique<Gtk::MessageDialog>(*this,
+    //                                                         "This is a QUESTION MessageDialog",
+    //                                                         false,                          // use_markup
+    //                                                         Gtk::MessageType::QUESTION,
+    //                                                         Gtk::ButtonsType::OK_CANCEL,
+    //                                                         true);                          // modal
 
     // Aggiunge i pulsanti con i rispettivi codici di risposta.
-    messageDialog->add_button("Yes", Gtk::ResponseType::YES);
-    messageDialog->add_button("No", Gtk::ResponseType::NO);
-    messageDialog->add_button("Cancel", Gtk::ResponseType::CANCEL);
-
-    messageDialog->set_secondary_text(
+    m_pMessageDialog->add_button("Yes", Gtk::ResponseType::YES);
+    m_pMessageDialog->add_button("No", Gtk::ResponseType::NO);
+    m_pMessageDialog->add_button("Cancel", Gtk::ResponseType::CANCEL);
+    m_pMessageDialog->set_secondary_text(
         "And this is the secondary text that explains things.");
-
-    // Connette il segnale "response" del dialogo al metodo on_message_dialog_response().
-    // Utilizza sigc::bind per passare il puntatore a messageDialog come parametro addizionale.
-    messageDialog->signal_response().connect(
-        sigc::bind(sigc::mem_fun(*this, &WindowTwo::on_message_dialog_response), messageDialog));
+    m_pMessageDialog->signal_response().connect(
+        sigc::mem_fun(*this, &WindowTwo::on_message_dialog_response));
 
     // Mostra il dialogo in maniera asincrona.
-    messageDialog->show();
+    m_pMessageDialog->show();
 }
 
 void WindowTwo::on_alert_dialog_button_clicked()
@@ -101,35 +84,30 @@ void WindowTwo::on_alert_dialog_button_clicked()
                         sigc::bind(sigc::mem_fun(*this, &WindowTwo::on_alert_dialog_choose), alertDialog));
 }
 
-void WindowTwo::on_message_dialog_response(int response, Gtk::MessageDialog *messageDialog)
+void WindowTwo::on_message_dialog_response(int response)
 {
     switch (response)
     {
     case Gtk::ResponseType::YES:
-        m_pLabel->set_text("You chose: Yes");
+        m_Label.set_text("You chose: Yes");
         break;
     case Gtk::ResponseType::NO:
-        m_pLabel->set_text("You chose: No");
+        m_Label.set_text("You chose: No");
         break;
     case Gtk::ResponseType::CANCEL:
-        m_pLabel->set_text("You chose: Cancel");
+        m_Label.set_text("You chose: Cancel");
         break;
     case Gtk::ResponseType::DELETE_EVENT:
-        m_pLabel->set_text("Dialog closed");
+        m_Label.set_text("Dialog closed");
         break;
     default:
-        m_pLabel->set_text("Unknown response");
+        m_Label.set_text("Unknown response");
         break;
     }
 
-    // Nasconde il dialogo (non lo chiude forzatamente).
-    messageDialog->hide();
-
-    // Dealloca il dialogo in modo sicuro utilizzando Glib::signal_idle().
-    // Questo assicura che il dialogo sia rimosso dopo che GTK ha completato il ciclo eventi.
-    Glib::signal_idle().connect_once(
-        [messageDialog]()
-        { delete messageDialog; });
+    // Nasconde o distrugge il dialogo
+    m_pMessageDialog->hide();
+    m_pMessageDialog = nullptr;
 }
 
 void WindowTwo::on_alert_dialog_choose(const Glib::RefPtr<Gio::AsyncResult> &result, Glib::RefPtr<Gtk::AlertDialog> alertDialog)
@@ -140,16 +118,16 @@ void WindowTwo::on_alert_dialog_choose(const Glib::RefPtr<Gio::AsyncResult> &res
         switch (response_id)
         {
         case 0:
-            m_pLabel->set_text("You chose: Cancel");
+            m_Label.set_text("You chose: Cancel");
             break;
         case 1:
-            m_pLabel->set_text("You chose: Retry");
+            m_Label.set_text("You chose: Retry");
             break;
         case 2:
-            m_pLabel->set_text("You chose: OK");
+            m_Label.set_text("You chose: OK");
             break;
         default:
-            m_pLabel->set_text("You chose: Unknown");
+            m_Label.set_text("You chose: Unknown");
             break;
         }
     }
@@ -162,9 +140,4 @@ void WindowTwo::on_alert_dialog_choose(const Glib::RefPtr<Gio::AsyncResult> &res
     {
         std::cout << "Unexpected exception. " << err.what() << std::endl;
     }
-}
-
-void WindowTwo::on_exit_button_clicked()
-{
-    close();
 }
