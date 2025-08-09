@@ -2,9 +2,10 @@
     "version": 8,
     "configurePresets": [
         {
-            "name": "msvc-base",
+            "name": "msvc-base-config",
             "hidden": true,
             "generator": "Ninja",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "toolset": {
                 "value": "x64",
                 "strategy": "external"
@@ -14,79 +15,80 @@
                 "strategy": "external"
             },
             "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
                 "CMAKE_C_COMPILER": "cl.exe",
                 "CMAKE_CXX_COMPILER": "cl.exe"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
             }
         },
         {
-            "name": "msvc-debug",
-            "displayName": "MSVC Debug",
-            "description": "Visual Studio (x64) Debug",
-            "inherits": "msvc-base",
+            "name": "msvc-config-debug",
+            "displayName": "MSVC Config Debug",
+            "inherits": "msvc-base-config",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "msvc-release",
-            "displayName": "MSVC Release",
-            "description": "Visual Studio (x64) Release",
-            "inherits": "msvc-base",
+            "name": "msvc-config-release",
+            "displayName": "MSVC Config Release",
+            "inherits": "msvc-base-config",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
-            "name": "gcc-debug",
-            "displayName": "GCC Debug",
-            "description": "MSYS2 GCC (ucrt64) Debug",
+            "name": "gcc-base-config",
+            "hidden": true,
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
+                "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe"
+            }
+        },
+        {
+            "name": "gcc-config-debug",
+            "displayName": "GCC Config Debug",
+            "inherits": "gcc-base-config",
+            "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "gcc-release",
-            "displayName": "GCC Release",
-            "description": "MSYS2 GCC (ucrt64) Release",
-            "generator": "Ninja",
+            "name": "gcc-config-release",
+            "displayName": "GCC Release Config",
+            "inherits": "gcc-base-config",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
                 "CMAKE_BUILD_TYPE": "Release"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "msvc-debug-build",
-            "displayName": "MSVC Debug Build",
-            "description": "Visual Studio (x64) Debug",
-            "configurePreset": "msvc-debug",
+            "name": "msvc-build-debug",
+            "displayName": "MSVC Build Debug",
+            "configurePreset": "msvc-config-debug",
             "jobs": 4
         },
         {
-            "name": "msvc-release-build",
-            "displayName": "MSVC Release Build",
-            "description": "Visual Studio (x64) Release",
-            "configurePreset": "msvc-release",
+            "name": "msvc-build-release",
+            "displayName": "MSVC Build Release",
+            "configurePreset": "msvc-config-release",
             "jobs": 4
         },
         {
-            "name": "gcc-debug-build",
-            "displayName": "GCC Debug Build",
-            "description": "MSYS2 GCC (ucrt64) Debug",
-            "configurePreset": "gcc-debug",
+            "name": "gcc-build-debug",
+            "displayName": "GCC Build Debug",
+            "configurePreset": "gcc-config-debug",
             "jobs": 4
         },
         {
-            "name": "gcc-release-build",
-            "displayName": "GCC Release Build",
-            "description": "MSYS2 GCC (ucrt64) Release",
-            "configurePreset": "gcc-release",
+            "name": "gcc-build-release",
+            "displayName": "GCC Build Release",
+            "configurePreset": "gcc-config-release",
             "jobs": 4
         }
     ]

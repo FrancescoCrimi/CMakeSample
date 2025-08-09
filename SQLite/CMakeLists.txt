@@ -1,2 +1,2 @@
 add_subdirectory(SQLiteApp)
-add_subdirectory(SQLiteCppApp)
+# add_subdirectory(SQLiteCppApp)
