@@ -1,4 +1,4 @@
-#include "window_two.h"
+#include "manual_window.h"
 #include "dialog.h"
 
 /**
@@ -6,18 +6,18 @@
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_window_two(GtkWindow *parent_window)
+GtkWindow *create_manual_window(GtkWindow *parent_window)
 {
     GtkWidget *window;
     GtkWidget *vbox;
     GtkLabel *label;
-    GtkWidget *show_dialog_button;
+    GtkWidget *show_message_dialog_button;
     GtkWidget *exit_button;
     MyContextObject *shared_context;
 
     // Crea la finestra principale associata all'applicazione
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "GTK3 Manual Window");
+    gtk_window_set_title(GTK_WINDOW(window), "Manual Window");
     gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
 
     // Connette il segnale "destroy" della finestra secondaria per chiuderla.
@@ -44,15 +44,15 @@ GtkWindow *create_window_two(GtkWindow *parent_window)
     shared_context->label = label;
 
 
-    // Crea il pulsante "Show Dialog"
-    show_dialog_button = gtk_button_new_with_label("Show Dialog");
-    gtk_box_pack_start(GTK_BOX(vbox), show_dialog_button, TRUE, TRUE, 0);
-    g_signal_connect_swapped(show_dialog_button, "clicked", G_CALLBACK(show_dialog), shared_context);
+    // Crea il pulsante "Show MessageDialog"
+    show_message_dialog_button = gtk_button_new_with_label("Show MessageDialog");
+    g_signal_connect_swapped(show_message_dialog_button, "clicked", G_CALLBACK(show_message_dialog), shared_context);
+    gtk_box_pack_start(GTK_BOX(vbox), show_message_dialog_button, TRUE, TRUE, 0);
 
     // Crea il pulsante "Exit"
     exit_button = gtk_button_new_with_label("Exit");
-    gtk_box_pack_start(GTK_BOX(vbox), exit_button, TRUE, TRUE, 0);
     g_signal_connect_swapped(exit_button, "clicked", G_CALLBACK(gtk_widget_destroy), window);
+    gtk_box_pack_start(GTK_BOX(vbox), exit_button, TRUE, TRUE, 0);
 
     gtk_widget_show_all(window);
 

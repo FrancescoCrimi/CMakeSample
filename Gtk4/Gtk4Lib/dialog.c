@@ -93,7 +93,7 @@ void show_message_dialog(MyContextObject *widgets)
     gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
                                              "Choose an option:");
 
-    // Collega l'evento "response" al callback on_dialog_response, passando la label come "user_data"
+    // Collega l'evento "response" al callback on_message_dialog_response, passando la label come "user_data"
     g_signal_connect(dialog, "response", G_CALLBACK(on_message_dialog_response), widgets->label);
 
     // Mostra il dialogo con tutti i widget

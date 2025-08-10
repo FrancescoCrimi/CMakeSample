@@ -1,6 +1,6 @@
 #include "MainWindow.hpp"
-#include "WindowTwo.hpp"
-#include "WindowOne.hpp"
+#include "ManualWindow.hpp"
+#include "BuilderWindow.hpp"
 #include <sigc++/sigc++.h>
 #include <iostream>
 
@@ -25,8 +25,8 @@ MainWindow::MainWindow()
     m_pBox->append(*m_pWelcomeLabel);
 
     // Crea i pulsanti
-    m_pManualButton = new Gtk::Button("Open Manual Window");
-    m_pBuilderButton = new Gtk::Button("Open Builder Window");
+    m_pManualButton = new Gtk::Button("Apri Manual Window");
+    m_pBuilderButton = new Gtk::Button("Apri Builder Window");
     m_pExitButton = new Gtk::Button("Exit");
 
     m_pBox->append(*m_pManualButton);
@@ -49,16 +49,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_manual_button_clicked()
 {
-    // Crea e mostra una nuova WindowTwo (non modale)
-    WindowTwo *pManual = new WindowTwo();
+    // Crea e mostra una nuova ManualWindow (non modale)
+    ManualWindow *pManual = new ManualWindow();
     pManual->set_transient_for(*this);
     pManual->show();
 }
 
 void MainWindow::on_builder_button_clicked()
 {
-    // Crea e mostra una nuova WindowOne (non modale)
-    WindowOne *pBuilder = new WindowOne();
+    // Crea e mostra una nuova BuilderWindow (non modale)
+    BuilderWindow *pBuilder = new BuilderWindow();
     pBuilder->set_transient_for(*this);
     pBuilder->show();
 }

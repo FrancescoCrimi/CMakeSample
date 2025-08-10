@@ -1,4 +1,4 @@
-#include "window_one.h"
+#include "builder_window.h"
 #include "dialog.h"
 
 /**
@@ -6,12 +6,12 @@
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_window_one(GtkWindow *parent_window)
+GtkWindow *create_builder_window(GtkWindow *parent_window)
 {
     GtkBuilder *builder;
     GtkWindow *window;
     GtkLabel *label;
-    GtkWidget *show_dialog_button;
+    GtkWidget *show_message_dialog_button;
     GtkWidget *exit_button;
     MyContextObject *shared_context;
 
@@ -32,9 +32,9 @@ GtkWindow *create_window_one(GtkWindow *parent_window)
     shared_context->label = label;
 
 
-    show_dialog_button = GTK_WIDGET(gtk_builder_get_object(builder, "dialog_button"));
+    show_message_dialog_button = GTK_WIDGET(gtk_builder_get_object(builder, "message_dialog_button"));
     // Collega il segnale "clicked" al relativo callback
-    g_signal_connect_swapped(show_dialog_button, "clicked", G_CALLBACK(show_dialog), shared_context);
+    g_signal_connect_swapped(show_message_dialog_button, "clicked", G_CALLBACK(show_message_dialog), shared_context);
 
     exit_button = GTK_WIDGET(gtk_builder_get_object(builder, "exit_button"));
     // Collega il segnale "clicked" al callback che chiude l'applicazione

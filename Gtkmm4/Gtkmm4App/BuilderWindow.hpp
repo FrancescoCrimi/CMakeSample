@@ -1,5 +1,5 @@
-#ifndef WINDOWONE_H
-#define WINDOWONE_H
+#ifndef BUILDERWINDOW_H
+#define BUILDERWINDOW_H
 
 #include <gtkmm/window.h>
 #include <gtkmm/label.h>
@@ -8,7 +8,7 @@
 #include <gtkmm/builder.h>
 
 /*
- * WindowOne
+ * BuilderWindow
  *
  * Questa classe implementa una finestra costruita tramite Gtk::Builder.
  * Il file XML (interface.ui) deve definire almeno:
@@ -19,11 +19,11 @@
  *
  * I segnali sono connessi a metodi membro senza l'uso di lambda; il dialogo viene deallocato in sicurezza.
  */
-class WindowOne : public Gtk::Window
+class BuilderWindow : public Gtk::Window
 {
 public:
-    WindowOne();
-    virtual ~WindowOne();
+    BuilderWindow();
+    virtual ~BuilderWindow();
 
 protected:
     // Callback per il pulsante "Show MessageDialog".
@@ -39,4 +39,4 @@ protected:
     Glib::RefPtr<Gtk::Button> pExitButton;
 };
 
-#endif // WINDOWONE_H
+#endif // BUILDERWINDOW_H

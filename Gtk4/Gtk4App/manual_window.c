@@ -1,4 +1,4 @@
-#include "window_two.h" // Include l'header di questo modulo
+#include "manual_window.h" // Include l'header di questo modulo
 #include "dialog.h"
 #include <gtk/gtk.h> // Necessario per le funzioni GTK
 
@@ -22,7 +22,7 @@ static void destroy_my_context_object(gpointer data)
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_window_two(GtkWindow *parent_window)
+GtkWindow *create_manual_window(GtkWindow *parent_window)
 {
     GtkWindow *window;
     GtkBox *vbox;
@@ -34,7 +34,7 @@ GtkWindow *create_window_two(GtkWindow *parent_window)
 
     /* Crea la finestra principale */
     window = GTK_WINDOW(gtk_window_new());
-    gtk_window_set_title(window, "GTK4 Manual Window");
+    gtk_window_set_title(window, "Manual Window");
     gtk_window_set_default_size(window, 300, 250);
     g_signal_connect(window, "close-request", G_CALLBACK(gtk_window_destroy), NULL);
 

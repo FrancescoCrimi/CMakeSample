@@ -4,7 +4,7 @@
   <requires lib="gtk" version="4.0" />
   <!-- Finestra principale -->
   <object class="GtkWindow" id="first_window">
-    <property name="title">GTK4 Builder Window</property>
+    <property name="title">Builder Window</property>
     <property name="default-width">300</property>
     <property name="default-height">250</property>
     <child>

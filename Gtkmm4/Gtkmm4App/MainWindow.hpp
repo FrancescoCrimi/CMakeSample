@@ -10,8 +10,8 @@
  * MainWindow
  *
  * Questa finestra principale presenta due pulsanti:
- *  - "Open Manual Window": apre la WindowTwo (interfaccia creata in codice).
- *  - "Open Builder Window": apre la WindowOne (interfaccia caricata da XML).
+ *  - "Open Manual Window": apre la ManualWindow (interfaccia creata in codice).
+ *  - "Open Builder Window": apre la BuilderWindow (interfaccia caricata da XML).
  */
 class MainWindow : public Gtk::Window
 {

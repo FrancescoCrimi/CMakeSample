@@ -1,6 +1,6 @@
 set(GTK4APP_SOURCE
-    window_two.c
-    window_one.c
+    manual_window.c
+    builder_window.c
     main_window.c
     main.c)
 

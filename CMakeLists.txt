@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.15) # O una versione più recente che preferisc
 # Questo inizializza i compilatori appropriati.
 project(CMakeSample LANGUAGES C CXX)
 
-# ---
-
 # Impostazioni globali (opzionale, ma consigliato per coerenza)
 # Verranno applicate a tutti i sottoprogetti, a meno che non vengano sovrascritte.
 
@@ -29,20 +27,13 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 #     add_compile_options(-Wall -Wextra -O3) # Abilita tutti i warning, warning extra, ottimizzazione massima
 # endif()
 
-# ---
-
 # Aggiungi le sottodirectory per ogni tuo progetto.
 # L'ordine può essere importante se ci sono dipendenze:
 # le librerie dovrebbero essere aggiunte prima degli eseguibili che le usano.
 
-# add_subdirectory(my_c_library)    # Esempio: una libreria scritta interamente in C
-# add_subdirectory(my_cpp_library)  # Esempio: una libreria scritta interamente in C++
-# add_subdirectory(c_app)          # Esempio: un eseguibile scritto interamente in C
-# add_subdirectory(cpp_app)        # Esempio: un eseguibile scritto interamente in C++
-
-add_subdirectory(C)
-add_subdirectory(Cpp)
+# add_subdirectory(C)
+# add_subdirectory(Cpp)
 add_subdirectory(Gtk3)
 add_subdirectory(Gtk4)
-add_subdirectory(Gtkmm4)
-add_subdirectory(SQLite)
+# add_subdirectory(Gtkmm4)
+# add_subdirectory(SQLite)

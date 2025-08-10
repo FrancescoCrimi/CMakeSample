@@ -1,4 +1,4 @@
-#include "window_one.h" // Include l'header di questo modulo
+#include "builder_window.h" // Include l'header di questo modulo
 #include <gtk/gtk.h>      // Necessario per le funzioni GTK
 #include "dialog.h"
 
@@ -23,7 +23,7 @@ static void destroy_my_context_object(gpointer data)
  * @param parent_window Il puntatore alla finestra genitore (per transient, non obbligatorio per finestre indipendenti).
  * @return Un puntatore al nuovo GtkWindow creato.
  */
-GtkWindow *create_window_one(GtkWindow *parent_window)
+GtkWindow *create_builder_window(GtkWindow *parent_window)
 {
     GtkWindow *window;
     GtkWidget *label;

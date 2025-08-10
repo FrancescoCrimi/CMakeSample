@@ -16,6 +16,6 @@ typedef struct
 /**
  * Crea e mostra un dialogo modale con le opzioni Yes/No/Cancel.
  */
-void show_dialog(MyContextObject *appWidgets);
+void show_message_dialog(MyContextObject *appWidgets);
 
 #endif /* DIALOG_H */

@@ -1,11 +1,11 @@
-#include "WindowTwo.hpp"
+#include "ManualWindow.hpp"
 #include <iostream>
 #include <exception>
 #include <glibmm/main.h>
 #include <gtkmm/alertdialog.h>
 #include <gtkmm/error.h>
 
-WindowTwo::WindowTwo() : m_Label("Initial text")
+ManualWindow::ManualWindow() : m_Label("Initial text")
 {
     set_title("Manual Window");
     set_default_size(300, 250);
@@ -23,26 +23,26 @@ WindowTwo::WindowTwo() : m_Label("Initial text")
 
     Gtk::Button messageDialogButton("Show MessageDialog");
     messageDialogButton.signal_clicked().connect(
-        sigc::mem_fun(*this, &WindowTwo::on_message_dialog_button_clicked));
+        sigc::mem_fun(*this, &ManualWindow::on_message_dialog_button_clicked));
     box.append(messageDialogButton);
 
     Gtk::Button alertDialogButton("Show AlertDialog");
     alertDialogButton.signal_clicked().connect(
-        sigc::mem_fun(*this, &WindowTwo::on_alert_dialog_button_clicked));
+        sigc::mem_fun(*this, &ManualWindow::on_alert_dialog_button_clicked));
     box.append(alertDialogButton);
 
     Gtk::Button exitButton("Exit");
     exitButton.signal_clicked().connect(
-        sigc::mem_fun(*this, &WindowTwo::close));
+        sigc::mem_fun(*this, &ManualWindow::close));
     box.append(exitButton);
 }
 
-WindowTwo::~WindowTwo()
+ManualWindow::~ManualWindow()
 {
     // I figli sono gestiti dal container (set_child e append).
 }
 
-void WindowTwo::on_message_dialog_button_clicked()
+void ManualWindow::on_message_dialog_button_clicked()
 {
     // Crea un dialogo associato alla finestra principale.
     m_pMessageDialog = Gtk::make_managed<Gtk::MessageDialog>(*this,
@@ -66,13 +66,13 @@ void WindowTwo::on_message_dialog_button_clicked()
     m_pMessageDialog->set_secondary_text(
         "And this is the secondary text that explains things.");
     m_pMessageDialog->signal_response().connect(
-        sigc::mem_fun(*this, &WindowTwo::on_message_dialog_response));
+        sigc::mem_fun(*this, &ManualWindow::on_message_dialog_response));
 
     // Mostra il dialogo in maniera asincrona.
     m_pMessageDialog->show();
 }
 
-void WindowTwo::on_alert_dialog_button_clicked()
+void ManualWindow::on_alert_dialog_button_clicked()
 {
     Glib::RefPtr<Gtk::AlertDialog> alertDialog = Gtk::AlertDialog::create();
     alertDialog->set_message("This is an AlertDialog.");
@@ -81,10 +81,10 @@ void WindowTwo::on_alert_dialog_button_clicked()
     alertDialog->set_default_button(2); // OK button or Return key
     alertDialog->set_cancel_button(0);  // Cancel button or Escape key
     alertDialog->choose(*this,
-                        sigc::bind(sigc::mem_fun(*this, &WindowTwo::on_alert_dialog_choose), alertDialog));
+                        sigc::bind(sigc::mem_fun(*this, &ManualWindow::on_alert_dialog_choose), alertDialog));
 }
 
-void WindowTwo::on_message_dialog_response(int response)
+void ManualWindow::on_message_dialog_response(int response)
 {
     switch (response)
     {
@@ -110,7 +110,7 @@ void WindowTwo::on_message_dialog_response(int response)
     m_pMessageDialog = nullptr;
 }
 
-void WindowTwo::on_alert_dialog_choose(const Glib::RefPtr<Gio::AsyncResult> &result, Glib::RefPtr<Gtk::AlertDialog> alertDialog)
+void ManualWindow::on_alert_dialog_choose(const Glib::RefPtr<Gio::AsyncResult> &result, Glib::RefPtr<Gtk::AlertDialog> alertDialog)
 {
     try
     {

@@ -1,12 +1,12 @@
 #include "dialog.h"
 
 /**
- * Callback "on_dialog_response":
+ * Callback "on_message_dialog_response":
  * - Chiamata quando l'utente risponde al messaggio del dialogo.
  * - Il parametro "response_id" contiene il valore della risposta selezionata.
  * - "user_data" contiene un puntatore alla GtkLabel della finestra principale.
  */
-static void on_dialog_response(GtkDialog *dialog, gint response_id, gpointer user_data)
+static void on_message_dialog_response(GtkDialog *dialog, gint response_id, gpointer user_data)
 {
     // Cast del puntatore ricevuto ad una GtkLabel
     GtkLabel *label = GTK_LABEL(user_data);
@@ -32,7 +32,7 @@ static void on_dialog_response(GtkDialog *dialog, gint response_id, gpointer use
     gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-void show_dialog(MyContextObject *appWidgets)
+void show_message_dialog(MyContextObject *appWidgets)
 {
     /* Crea il dialogo impostato come modale, associato alla finestra principale.
        Il dialogo è di tipo "question" e non usa i pulsanti predefiniti (GTK_BUTTONS_NONE) */
@@ -56,8 +56,8 @@ void show_dialog(MyContextObject *appWidgets)
     gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
                                              "Choose an option:");
 
-    // Collega l'evento "response" al callback on_dialog_response, passando la label come "user_data"
-    g_signal_connect(dialog, "response", G_CALLBACK(on_dialog_response), appWidgets->label);
+    // Collega l'evento "response" al callback on_message_dialog_response, passando la label come "user_data"
+    g_signal_connect(dialog, "response", G_CALLBACK(on_message_dialog_response), appWidgets->label);
 
     // Mostra il dialogo con tutti i widget
     gtk_widget_show_all(dialog);

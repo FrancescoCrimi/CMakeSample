@@ -1,8 +1,8 @@
 set(GTKMM4APP_SOURCE
     main.cpp
     MainWindow.cpp
-    WindowTwo.cpp
-    WindowOne.cpp)
+    ManualWindow.cpp
+    BuilderWindow.cpp)
 
 add_executable(Gtkmm4App ${GTKMM4APP_SOURCE})
 

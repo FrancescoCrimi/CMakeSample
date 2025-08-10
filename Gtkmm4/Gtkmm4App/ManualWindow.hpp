@@ -1,5 +1,5 @@
-#ifndef WINDOWTWO_H
-#define WINDOWTWO_H
+#ifndef MANUALWINDOW_H
+#define MANUALWINDOW_H
 
 #include <gtkmm/application.h>
 #include <gtkmm/window.h>
@@ -10,16 +10,16 @@
 #include <gtkmm/alertdialog.h>
 
 /*
- * WindowTwo
+ * ManualWindow
  *
  * Questa finestra viene realizzata interamente in codice.
  * Mostra una label e tre pulsanti: "Show MessageDialog", "Show AlertDialog" e "Exit".
  */
-class WindowTwo : public Gtk::Window
+class ManualWindow : public Gtk::Window
 {
 public:
-    WindowTwo();
-    virtual ~WindowTwo();
+    ManualWindow();
+    virtual ~ManualWindow();
 
 private:
     // Callback per il pulsante "Show MessageDialog".
@@ -39,4 +39,4 @@ private:
     // Glib::RefPtr<Gtk::AlertDialog> m_pAlertDialog;
 };
 
-#endif // WINDOWTWO_H
+#endif // MANUALWINDOW_H
