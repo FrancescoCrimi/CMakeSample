@@ -9,6 +9,6 @@
 # set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Aggiunta delle sottodirectory: libreria e app
-add_subdirectory(CppLib)
-add_subdirectory(CppApp1)
-add_subdirectory(CppApp2)
+add_subdirectory(MyLibCpp)
+add_subdirectory(AppCpp1)
+add_subdirectory(AppCpp2)

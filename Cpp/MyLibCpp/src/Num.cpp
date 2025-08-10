@@ -1,4 +1,4 @@
-#include "num.hpp"
+#include "Num.hpp"
 
 // Implementazione del metodo statico per sommare due numeri
 int Num::sum(int a, int b)

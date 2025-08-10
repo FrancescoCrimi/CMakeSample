@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "export.h" // Gestione di dllexport/dllimport
+#include "export.h"         // Gestione di dllexport/dllimport
 #include <stdlib.h>
 
 #ifdef __cplusplus

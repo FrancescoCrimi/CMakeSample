@@ -1,11 +1,11 @@
 #ifndef NUM_H
 #define NUM_H
 
-#include "cpplib_export.hpp"
+#include "export.hpp"
 #include <vector>
 
 // La classe Num fornisce metodi per operazioni numeriche
-class CPPLIB_API Num
+class MYLIBCPP_API Num
 {
 public:
     // Metodo che ritorna la somma di due numeri interi

@@ -16,10 +16,11 @@ set(MYLIBC_SOURCES
 # 📦 Libreria dinamica (.dll/.so)
 # ===========================
 
-# Crea la libreria condivisa (DLL su Windows) a partire dai sorgenti num.c e str.c
+# Crea una libreria condivisa
 add_library(mylibc_shared SHARED ${MYLIBC_SOURCES} ${MYLIBC_HEADERS})
 add_library(mylibc::shared ALIAS mylibc_shared)
 
+# Imposta nome libreria condivisa
 set_target_properties(mylibc_shared PROPERTIES
   OUTPUT_NAME "mylibc"
   POSITION_INDEPENDENT_CODE ON
@@ -97,6 +98,7 @@ install(TARGETS mylibc_shared mylibc_static
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
+
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(EXPORT mylibc-targets

@@ -32,7 +32,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # le librerie dovrebbero essere aggiunte prima degli eseguibili che le usano.
 
 add_subdirectory(C)
-# add_subdirectory(Cpp)
+add_subdirectory(Cpp)
 # add_subdirectory(Gtk3)
 # add_subdirectory(Gtk4)
 # add_subdirectory(Gtkmm4)

@@ -1,11 +1,11 @@
 #ifndef STR_H
 #define STR_H
 
-#include "cpplib_export.hpp"
+#include "export.hpp"
 #include <string>
 
 // Classe che rappresenta un oggetto con un nome
-class CPPLIB_API Str
+class MYLIBCPP_API Str
 {
 public:
     // Costruttore che accetta un parametro stringa (ad esempio, un prefisso per il saluto)

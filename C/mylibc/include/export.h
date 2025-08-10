@@ -1,5 +1,5 @@
-#ifndef CLIB_EXPORT_H
-#define CLIB_EXPORT_H
+#ifndef MYLIBC_EXPORT_H
+#define MYLIBC_EXPORT_H
 
 #if defined(_WIN32) || defined(__CYGWIN__)
   #ifdef MYLIBC_SHARED
@@ -19,4 +19,4 @@
   #endif
 #endif
 
-#endif // CLIB_EXPORT_H
+#endif // MYLIBC_EXPORT_H

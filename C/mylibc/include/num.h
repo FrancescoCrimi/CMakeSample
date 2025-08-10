@@ -1,8 +1,8 @@
 #ifndef NUM_H
 #define NUM_H
 
-#include <stddef.h>       // Aggiunto per definizione di size_t
-#include "export.h" // Gestione di dllexport/dllimport
+#include <stddef.h>         // Aggiunto per definizione di size_t
+#include "export.h"         // Gestione di dllexport/dllimport
 
 #ifdef __cplusplus
 extern "C"

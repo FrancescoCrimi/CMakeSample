@@ -1,18 +1,18 @@
-#ifndef CPPLIB_EXPORT_H
-#define CPPLIB_EXPORT_H
+#ifndef MYLIBCPP_EXPORT_H
+#define MYLIBCPP_EXPORT_H
 
 // Su Windows utilizziamo __declspec(dllexport)/__declspec(dllimport)
 #if defined(_WIN32) || defined(_WIN64)
-    #ifdef CPPLIB_EXPORTS
+    #ifdef MYLIBCPP_EXPORTS
         // Durante la compilazione della DLL
-        #define CPPLIB_API __declspec(dllexport)
+        #define MYLIBCPP_API __declspec(dllexport)
     #else
         // Quando la DLL viene utilizzata
-        #define CPPLIB_API __declspec(dllimport)
+        #define MYLIBCPP_API __declspec(dllimport)
     #endif
 #else
     // Su altre piattaforme non sono necessarie direttive particolari
-    #define CPPLIB_API
+    #define MYLIBCPP_API
 #endif
 
-#endif // CPPLIB_EXPORT_H
+#endif // MYLIBCPP_EXPORT_H
