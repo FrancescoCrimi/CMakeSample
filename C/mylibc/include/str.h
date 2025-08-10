@@ -1,7 +1,7 @@
 #ifndef STR_H
 #define STR_H
 
-#include "clib_export.h"
+#include "export.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -13,7 +13,7 @@ extern "C"
      * La funzione alloca dinamicamente la stringa con malloc;
      * Il chiamante è responsabile di liberare la memoria allocata.
      */
-    CLIB_API char *greet(const char *name);
+    MYLIBC_API char *greet(const char *name);
 
 #ifdef __cplusplus
 }

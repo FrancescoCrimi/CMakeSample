@@ -1,9 +1,9 @@
-#ifndef CLIB_H
-#define CLIB_H
+#ifndef MYLIBC_H
+#define MYLIBC_H
 
 // Header globale che include i file header di entrambi i moduli
 #include "str.h"
 #include "num.h"
 #include "utils.h"
 
-#endif // CLIB_H
+#endif // MYLIBC_H

@@ -2,7 +2,7 @@
 #define NUM_H
 
 #include <stddef.h>       // Aggiunto per definizione di size_t
-#include "clib_export.h" // Gestione di dllexport/dllimport
+#include "export.h" // Gestione di dllexport/dllimport
 
 #ifdef __cplusplus
 extern "C"
@@ -10,7 +10,7 @@ extern "C"
 #endif
 
     // Funzione che somma due numeri interi e restituisce il risultato.
-    CLIB_API int sum(int a, int b);
+    MYLIBC_API int sum(int a, int b);
 
     /**
      * Calcola la media di un array di numeri interi.
@@ -20,7 +20,7 @@ extern "C"
      * @param size Numero di elementi nell'array.
      * @return La media degli elementi dell'array (double).
      */
-    CLIB_API double average(const int *numbers, size_t size);
+    MYLIBC_API double average(const int *numbers, size_t size);
 
 #ifdef __cplusplus
 }

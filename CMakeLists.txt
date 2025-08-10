@@ -31,9 +31,9 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # L'ordine può essere importante se ci sono dipendenze:
 # le librerie dovrebbero essere aggiunte prima degli eseguibili che le usano.
 
-# add_subdirectory(C)
+add_subdirectory(C)
 # add_subdirectory(Cpp)
-add_subdirectory(Gtk3)
-add_subdirectory(Gtk4)
+# add_subdirectory(Gtk3)
+# add_subdirectory(Gtk4)
 # add_subdirectory(Gtkmm4)
 # add_subdirectory(SQLite)

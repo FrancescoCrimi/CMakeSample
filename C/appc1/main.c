@@ -1,4 +1,4 @@
-#include "clib.h" // Header aggregato della libreria
+#include "mylibc.h" // Header aggregato della libreria
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -9,6 +9,6 @@
 # set(CMAKE_C_EXTENSIONS OFF)
 
 # Aggiunta delle sottodirectory: libreria e app
-add_subdirectory(CLib)
-add_subdirectory(CApp1)
-add_subdirectory(CApp2)
+add_subdirectory(mylibc)
+add_subdirectory(appc1)
+add_subdirectory(appc2)
