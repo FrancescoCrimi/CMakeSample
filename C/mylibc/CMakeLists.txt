@@ -1,3 +1,6 @@
+#---------
+# Sorgenti
+#---------
 set(MYLIBC_HEADERS
     include/mylibc.h
     include/export.h
@@ -12,9 +15,10 @@ set(MYLIBC_SOURCES
     src/utils.c
 )
 
-# ===========================
-# 📦 Libreria dinamica (.dll/.so)
-# ===========================
+
+# ======================
+# Crea libreria dinamica
+# ======================
 
 # Crea una libreria condivisa
 add_library(mylibc_shared SHARED ${MYLIBC_SOURCES} ${MYLIBC_HEADERS})
@@ -40,10 +44,10 @@ target_compile_definitions(mylibc_shared
     PRIVATE MYLIBC_SHARED
 )
 
-# ===========================
-# 📦 Libreria statica (.a/.lib)
-# ===========================
 
+# =====================
+# Crea libreria statica
+# =====================
 add_library(mylibc_static STATIC ${MYLIBC_SOURCES} ${MYLIBC_HEADERS})
 add_library(mylibc::static ALIAS mylibc_static)
 
@@ -59,10 +63,10 @@ target_include_directories(mylibc_static PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-# ===========================
-# 🔩 Output ordinato
-# ===========================
 
+# ===============
+# Output ordinato
+# ===============
 set_target_properties(mylibc_shared PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin   # .dll
   LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib   # .so
@@ -72,10 +76,10 @@ set_target_properties(mylibc_static PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib   # .a / .lib
 )
 
-# ===========================
-# 🎛️ Opzioni per abilitare/disabilitare build
-# ===========================
 
+# ========================================
+# Opzioni per abilitare/disabilitare build
+# ========================================
 option(MYLIBC_BUILD_SHARED "Build shared library" ON)
 option(MYLIBC_BUILD_STATIC "Build static library" ON)
 
@@ -86,10 +90,10 @@ if(NOT MYLIBC_BUILD_STATIC)
   set_target_properties(mylibc_static PROPERTIES EXCLUDE_FROM_ALL ON)
 endif()
 
-# ===========================
-# 📦 Installazione
-# ===========================
 
+# =============
+# Installazione
+# =============
 include(GNUInstallDirs)
 
 install(TARGETS mylibc_shared mylibc_static

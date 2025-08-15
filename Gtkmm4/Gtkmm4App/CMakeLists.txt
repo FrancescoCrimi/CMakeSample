@@ -1,9 +1,17 @@
+#---------
+# Sorgenti
+#---------
 set(GTKMM4APP_SOURCE
     main.cpp
     MainWindow.cpp
     ManualWindow.cpp
-    BuilderWindow.cpp)
+    BuilderWindow.cpp
+)
 
+
+#----------------
+# Crea eseguibile
+#----------------
 add_executable(Gtkmm4App ${GTKMM4APP_SOURCE})
 
 
@@ -25,7 +33,9 @@ target_compile_options(Gtkmm4App PRIVATE -Wdeprecated-declarations)
 # target_compile_definitions(Gtkmm4App PRIVATE GTKMM_DISABLE_DEPRECATED)
 
 
-# Se siamo in ambiente Windows, per evitare l'apertura della console:
+#------------------------------------------------
+# Su Windows per evitare l'apertura della console
+#------------------------------------------------
 if(WIN32)
     if(MSVC)
         # Per MSVC, impostando questa proprietà il linker usa /SUBSYSTEM:WINDOWS
@@ -36,9 +46,12 @@ if(WIN32)
     endif()
 endif()
 
-# Copia il file interface.ui nella stessa cartella dell'eseguibile (necessario a runtime)
+
+#-----------------------------------------------------------
+# Copia il file interface.ui nella directory dell'eseguibile
+#-----------------------------------------------------------
 add_custom_command(TARGET Gtkmm4App POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          ${CMAKE_CURRENT_SOURCE_DIR}/interface.ui
-          $<TARGET_FILE_DIR:Gtkmm4App>
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_SOURCE_DIR}/interface.ui
+    $<TARGET_FILE_DIR:Gtkmm4App>
 )

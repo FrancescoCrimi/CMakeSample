@@ -1,3 +1,6 @@
+#---------
+# Sorgenti
+#---------
 set(MYLIBCPP_HEADERS
     include/export.hpp
     include/MyLibCpp.hpp
@@ -11,6 +14,7 @@ set(MYLIBCPP_SOURCES
     src/Str.cpp
     src/Utils.cpp
 )
+
 
 # ----------------------
 # Libreria Condivisa
