@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-
 project(CMakeSample VERSION 1.0.0 LANGUAGES C CXX)
-
 include(cmake/Settings.cmake)
 
 # # Gestione delle opzioni di compilazione (warnings, ottimizzazione, debug)
@@ -15,8 +13,8 @@ include(cmake/Settings.cmake)
 # Includi cartelle
 #-----------------
 add_subdirectory(C)
-add_subdirectory(Cpp)
-add_subdirectory(Gtk3)
-add_subdirectory(Gtk4)
+# add_subdirectory(Cpp)
+# add_subdirectory(Gtk3)
+# add_subdirectory(Gtk4)
 # add_subdirectory(Gtkmm4)
 add_subdirectory(SQLite)

@@ -14,8 +14,14 @@ char *greet(const char *name)
     char *greeting = (char *)malloc(len);
     if (greeting != NULL)
     {
-        strcpy_s(greeting, len, prefix);
-        strcat_s(greeting, len, name);
+        strncpy(greeting, prefix, len);
+        greeting[strlen(prefix)] = '\0';
+        strncat(greeting, name, len - strlen(greeting) - 1);
     }
     return greeting;
+}
+
+void free_greet(char *greeting)
+{
+    free(greeting);
 }

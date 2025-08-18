@@ -15,6 +15,12 @@ extern "C"
      */
     MYLIBC_API char *greet(const char *name);
 
+    /**
+     * Libera la memoria allocata da greet().
+     * È consigliato usare questa funzione invece di free().
+     */
+    MYLIBC_API void free_greet(char *greeting);
+
 #ifdef __cplusplus
 }
 #endif
