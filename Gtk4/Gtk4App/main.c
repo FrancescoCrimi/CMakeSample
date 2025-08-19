@@ -1,3 +1,12 @@
+/**
+ * Tipo di applicazione: GTK4 con GtkApplication
+ *
+ * Descrizione:
+ *  - Usa GtkApplication per incapsulare il loop principale e le risorse di GTK.
+ *  - Avvia l’app con g_application_run().
+ *  - Esce pulitamente con g_application_quit() alla chiusura della finestra.
+ */
+
 #include <gtk/gtk.h>
 #include "main_window.h" // Include l'header della finestra principale
 
@@ -36,7 +45,6 @@ int main(int argc, char *argv[])
 
     // Libera l'oggetto GtkApplication quando l'applicazione termina
     g_object_unref(app);
-
     return status;
 }
 

@@ -1,7 +1,7 @@
-#include "main_window.h"      // Include l'header di questo modulo
-#include "builder_window.h"     // Include l'header della prima finestra secondaria
-#include "manual_window.h"    // Include l'header della seconda finestra secondaria
 #include <gtk/gtk.h>          // Necessario per le funzioni GTK
+#include "main_window.h"      // Include l'header di questo modulo
+#include "builder_window.h"   // Include l'header della prima finestra secondaria
+#include "manual_window.h"    // Include l'header della seconda finestra secondaria
 
 // --- Callback per i pulsanti della finestra principale ---
 

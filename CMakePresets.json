@@ -43,12 +43,41 @@
             }
         },
         {
-            "name": "gcc-base-config",
+            "name": "msys2-base-config",
             "hidden": true,
             "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/gcc.exe",
                 "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe"
+            }
+        },
+        {
+            "name": "msys2-config-debug",
+            "displayName": "Msys2 Config Debug",
+            "inherits": "msys2-base-config",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msys2-config-release",
+            "displayName": "Msys2 Config Release",
+            "inherits": "msys2-base-config",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "gcc-base-config",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
@@ -61,7 +90,7 @@
         },
         {
             "name": "gcc-config-release",
-            "displayName": "GCC Release Config",
+            "displayName": "GCC Config Release",
             "inherits": "gcc-base-config",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -79,6 +108,18 @@
             "name": "msvc-build-release",
             "displayName": "MSVC Build Release",
             "configurePreset": "msvc-config-release",
+            "jobs": 4
+        },
+        {
+            "name": "msys2-build-debug",
+            "displayName": "Msys2 Build Debug",
+            "configurePreset": "msys2-config-debug",
+            "jobs": 4
+        },
+        {
+            "name": "msys2-build-release",
+            "displayName": "Msys2 Build Release",
+            "configurePreset": "msys2-config-release",
             "jobs": 4
         },
         {

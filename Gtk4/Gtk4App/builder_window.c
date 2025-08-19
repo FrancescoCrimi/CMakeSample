@@ -1,5 +1,5 @@
+#include <gtk/gtk.h>        // Necessario per le funzioni GTK
 #include "builder_window.h" // Include l'header di questo modulo
-#include <gtk/gtk.h>      // Necessario per le funzioni GTK
 #include "dialog.h"
 
 /**

@@ -13,8 +13,8 @@ include(cmake/Settings.cmake)
 # Includi cartelle
 #-----------------
 add_subdirectory(C)
-# add_subdirectory(Cpp)
-# add_subdirectory(Gtk3)
-# add_subdirectory(Gtk4)
-# add_subdirectory(Gtkmm4)
+add_subdirectory(Cpp)
+add_subdirectory(Gtk3)
+add_subdirectory(Gtk4)
+add_subdirectory(Gtkmm4)
 add_subdirectory(SQLite)
