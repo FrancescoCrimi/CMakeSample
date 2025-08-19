@@ -1,6 +1,6 @@
 #-----------------
 # Includi cartelle
 #-----------------
-add_subdirectory(MyLibCpp)
-add_subdirectory(AppCpp1)
-add_subdirectory(AppCpp2)
+add_subdirectory(Lib)
+add_subdirectory(App1)
+add_subdirectory(App2)

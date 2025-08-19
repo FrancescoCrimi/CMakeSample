@@ -1,7 +1,7 @@
 #---------
 # Sorgenti
 #---------
-set(APP2GTK4_SOURCE
+set(GTK4APP2_SOURCE
     main.c
 )
 
@@ -9,16 +9,16 @@ set(APP2GTK4_SOURCE
 #----------------
 # Crea eseguibile
 #----------------
-add_executable(App2Gtk4 ${APP2GTK4_SOURCE})
+add_executable(Gtk4App2 ${GTK4APP2_SOURCE})
 
 
 #-----------------------------------------
 # Aggiungi la libreria Gtk4 via pkg-config
 #-----------------------------------------
-target_compile_options(App2Gtk4 PRIVATE ${GTK4_CFLAGS_OTHER})
-target_include_directories(App2Gtk4 PRIVATE ${GTK4_INCLUDE_DIRS})
-target_link_directories(App2Gtk4 PRIVATE ${GTK4_LIBRARY_DIRS})
-target_link_libraries(App2Gtk4 PRIVATE ${GTK4_LIBRARIES})
+target_compile_options(Gtk4App2 PRIVATE ${GTK4_CFLAGS_OTHER})
+target_include_directories(Gtk4App2 PRIVATE ${GTK4_INCLUDE_DIRS})
+target_link_directories(Gtk4App2 PRIVATE ${GTK4_LIBRARY_DIRS})
+target_link_libraries(Gtk4App2 PRIVATE ${GTK4_LIBRARIES})
 
 
 #------------------------------------------------
@@ -27,10 +27,10 @@ target_link_libraries(App2Gtk4 PRIVATE ${GTK4_LIBRARIES})
 if(WIN32)
     if(MSVC)
         # Per MSVC, impostando questa proprietà il linker usa /SUBSYSTEM:WINDOWS
-        set_target_properties(App2Gtk4 PROPERTIES WIN32_EXECUTABLE TRUE)
+        set_target_properties(Gtk4App2 PROPERTIES WIN32_EXECUTABLE TRUE)
     else()
         # Per GCC/MinGW, il flag "-mwindows" impedisce l'apertura della console
-        set_target_properties(App2Gtk4 PROPERTIES LINK_FLAGS "-mwindows")
+        set_target_properties(Gtk4App2 PROPERTIES LINK_FLAGS "-mwindows")
     endif()
 endif()
 

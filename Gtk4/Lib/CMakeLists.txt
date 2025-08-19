@@ -1,7 +1,7 @@
 #---------
 # Sorgenti
 #---------
-set(MYDIALOG_SOURCE
+set(GTK4LIB_SOURCE
     dialog.c
 )
 
@@ -9,7 +9,7 @@ set(MYDIALOG_SOURCE
 #------------------------
 # Crea libreria condivisa
 #------------------------
-add_library(Gtk4Lib SHARED ${MYDIALOG_SOURCE})
+add_library(Gtk4Lib SHARED ${GTK4LIB_SOURCE})
 
 
 #-----------------------------------------

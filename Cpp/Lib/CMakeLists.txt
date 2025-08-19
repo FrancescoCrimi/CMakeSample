@@ -16,9 +16,9 @@ set(MYLIBCPP_SOURCES
 )
 
 
-# ----------------------
+# ------------------
 # Libreria Condivisa
-# ----------------------
+# ------------------
 
 # Crea una libreria condivisa
 add_library(MyLibCpp_shared SHARED ${MYLIBCPP_SOURCES} ${MYLIBCPP_HEADERS})
@@ -43,6 +43,6 @@ target_compile_definitions(MyLibCpp_shared
     PRIVATE MYLIBCPP_EXPORTS
 )
 
-# ----------------------
+# ----------------
 # Libreria Statica
-# ----------------------
+# ----------------

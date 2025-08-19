@@ -17,6 +17,6 @@ pkg_check_modules(GTK4 REQUIRED gtk4)
 #-----------------
 # Includi cartelle
 #-----------------
-add_subdirectory(Gtk4Lib)
-add_subdirectory(Gtk4App)
-add_subdirectory(App2Gtk4)
+add_subdirectory(Lib)
+add_subdirectory(App1)
+add_subdirectory(App2)

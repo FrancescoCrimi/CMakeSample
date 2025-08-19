@@ -8,5 +8,6 @@ pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 #-----------------
 # Includi cartelle
 #-----------------
-add_subdirectory(Gtk3Lib)
-add_subdirectory(Gtk3App)
+add_subdirectory(Lib)
+add_subdirectory(App1)
+add_subdirectory(App2)

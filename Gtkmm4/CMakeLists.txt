@@ -8,4 +8,4 @@ pkg_check_modules(GTKMM4 REQUIRED gtkmm-4.0)
 #-----------------
 # Includi cartelle
 #-----------------
-add_subdirectory(Gtkmm4App)
+add_subdirectory(App)
