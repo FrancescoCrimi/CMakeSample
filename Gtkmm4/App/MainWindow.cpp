@@ -7,7 +7,7 @@
 MainWindow::MainWindow()
     : Gtk::Window(), m_pBox(nullptr), m_pWelcomeLabel(nullptr), m_pManualButton(nullptr), m_pBuilderButton(nullptr), m_pExitButton(nullptr)
 {
-    set_title("App Gtkmm4");
+    set_title("Gtkmm4 App 1");
     set_default_size(300, 250);
 
     // Crea un contenitore verticale con margini e spacing

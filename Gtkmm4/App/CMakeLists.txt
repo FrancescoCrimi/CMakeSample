@@ -15,12 +15,6 @@ set(GTKMM4APP_SOURCE
 add_executable(Gtkmm4App ${GTKMM4APP_SOURCE})
 
 
-# # Includi le directory di include e link Globale in base a quanto trovato da pkg-config
-# include_directories(${GTKMM4_INCLUDE_DIRS})
-# link_directories(${GTKMM4_LIBRARY_DIRS})
-# add_definitions(${GTKMM4_CFLAGS_OTHER})
-# target_link_libraries(Gtkmm4App ${GTKMM4_LIBRARIES})
-
 # Includi le directory di include e link in base a quanto trovato da pkg-config
 target_compile_options(Gtkmm4App PRIVATE ${GTKMM4_CFLAGS_OTHER})
 target_include_directories(Gtkmm4App PRIVATE ${GTKMM4_INCLUDE_DIRS})

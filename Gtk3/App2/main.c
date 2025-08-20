@@ -3,47 +3,84 @@
 
 static void helloWorld(GtkWidget *wid, GtkWidget *win)
 {
-  GtkWidget *dialog = NULL;
+	GtkWidget *dialog = NULL;
 
-  dialog = gtk_message_dialog_new(GTK_WINDOW(win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "Hello World!");
-  gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_CENTER);
-  gtk_dialog_run(GTK_DIALOG(dialog));
-  gtk_widget_destroy(dialog);
+	// Crea MessageDialog
+	dialog = gtk_message_dialog_new(GTK_WINDOW(win),
+									GTK_DIALOG_MODAL,
+									GTK_MESSAGE_INFO,
+									// GTK_BUTTONS_CLOSE,
+									GTK_BUTTONS_NONE,
+									"Confirm");
+
+	// Aggiunge Bottoni
+	gtk_dialog_add_buttons(GTK_DIALOG(dialog),
+						   "Yes", GTK_RESPONSE_YES,
+						   "No", GTK_RESPONSE_NO,
+						   "Cancel", GTK_RESPONSE_CANCEL,
+						   NULL);
+
+	/* Aggiungi un testo secondario */
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+											 "Choose an option:");
+
+	gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_CENTER);
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
 int main(int argc, char *argv[])
 {
-  GtkWidget *button = NULL;
-  GtkWidget *win = NULL;
-  GtkWidget *vbox = NULL;
+	GtkWidget *win = NULL;
+	GtkWidget *vbox = NULL;
+	GtkWidget *label;
+	GtkWidget *button = NULL;
 
-  /* Initialize GTK+ */
-  g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, (GLogFunc)gtk_false, NULL);
-  gtk_init(&argc, &argv);
-  g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, g_log_default_handler, NULL);
+	// Inizializzazione di GTK
+	g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, (GLogFunc)gtk_false, NULL);
+	gtk_init(&argc, &argv);
+	g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING, g_log_default_handler, NULL);
 
-  /* Create the main window */
-  win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_container_set_border_width(GTK_CONTAINER(win), 8);
-  gtk_window_set_title(GTK_WINDOW(win), "Hello World");
-  gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
-  gtk_widget_realize(win);
-  g_signal_connect(win, "destroy", gtk_main_quit, NULL);
+	// Crea la finestra principale dell'applicazione
+	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title(GTK_WINDOW(win), "Gtk3 App 2");
+	gtk_window_set_default_size(GTK_WINDOW(win), 300, 250);
+	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
+	gtk_widget_realize(win);
 
-  /* Create a vertical box with buttons */
-  vbox = gtk_vbox_new(TRUE, 6);
-  gtk_container_add(GTK_CONTAINER(win), vbox);
+	// Connette il segnale "destroy" della finestra principale per terminare l'applicazione
+	// Quando la finestra principale viene chiusa, l'intera applicazione termina.
+	g_signal_connect(win, "destroy", gtk_main_quit, NULL);
 
-  button = gtk_button_new_from_stock(GTK_STOCK_DIALOG_INFO);
-  g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(helloWorld), (gpointer)win);
-  gtk_box_pack_start(GTK_BOX(vbox), button, TRUE, TRUE, 0);
+	// Crea un GtkBox per organizzare i widget verticalmente
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
+	// Aggiunge un margine per centrare meglio i widget
+	gtk_container_set_border_width(GTK_CONTAINER(vbox), 15);
+	gtk_widget_set_halign(vbox, GTK_ALIGN_CENTER);
+	gtk_widget_set_valign(vbox, GTK_ALIGN_CENTER);
+	gtk_container_add(GTK_CONTAINER(win), vbox);
 
-  button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
-  g_signal_connect(button, "clicked", gtk_main_quit, NULL);
-  gtk_box_pack_start(GTK_BOX(vbox), button, TRUE, TRUE, 0);
+	// Crea la label di benvenuto
+	label = gtk_label_new("Finestra Principale");
+	// Imposta il testo della label in grassetto per renderlo più evidente
+	gtk_label_set_markup(GTK_LABEL(label), "<big><b>Finestra Principale</b></big>");
+	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0); // Non espandere, non riempire
 
-  /* Enter the main loop */
-  gtk_widget_show_all(win);
-  gtk_main();
-  return 0;
+	// Crea il primo pulsante
+	button = gtk_button_new_with_label("Apri Window");
+	gtk_box_pack_start(GTK_BOX(vbox), button, TRUE, TRUE, 0);
+	g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(helloWorld), (gpointer)win);
+
+	// Crea Pulsante Exit
+	button = gtk_button_new_with_label("Exit");
+	gtk_box_pack_start(GTK_BOX(vbox), button, TRUE, TRUE, 0);
+	g_signal_connect(button, "clicked", gtk_main_quit, NULL);
+
+	// Mostra la finestra
+	gtk_widget_show_all(win);
+
+	// Entra nel main loop
+	gtk_main();
+
+	return 0;
 }

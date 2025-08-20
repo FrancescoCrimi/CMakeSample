@@ -3,8 +3,6 @@
 #include "manual_window.h" // Include l'header della seconda finestra secondaria
 #include <gtk/gtk.h>       // Necessario per le funzioni GTK
 
-// --- Callback per i pulsanti della finestra principale ---
-
 /**
  * @brief Callback per il primo pulsante. Apre la "Finestra Uno".
  * @param button Il pulsante che ha generato l'evento.
@@ -40,15 +38,16 @@ GtkWindow *create_main_window(GtkApplication *app)
 {
     GtkWidget *main_window;
     GtkWidget *vbox;
-    GtkWidget *welcome_label;
+    GtkWidget *label;
     GtkWidget *builder_button;
     GtkWidget *manual_button;
     GtkWidget *exit_button;
 
     // Crea la finestra principale dell'applicazione
     main_window = gtk_application_window_new(app); // Associa la finestra all'applicazione
-    gtk_window_set_title(GTK_WINDOW(main_window), "App Gtk3");
-    gtk_window_set_default_size(GTK_WINDOW(main_window), 300, 200);
+    gtk_window_set_title(GTK_WINDOW(main_window), "Gtk3 App 1");
+    gtk_window_set_default_size(GTK_WINDOW(main_window), 300, 250);
+    gtk_window_set_position(GTK_WINDOW(main_window), GTK_WIN_POS_CENTER);
 
     // Connette il segnale "destroy" della finestra principale per terminare l'applicazione
     // Quando la finestra principale viene chiusa, l'intera applicazione termina.
@@ -63,10 +62,10 @@ GtkWindow *create_main_window(GtkApplication *app)
     gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(vbox));
 
     // Crea la label di benvenuto
-    welcome_label = gtk_label_new("Finestra Principale");
+    label = gtk_label_new("Finestra Principale");
     // Imposta il testo della label in grassetto per renderlo più evidente
-    gtk_label_set_markup(GTK_LABEL(welcome_label), "<big><b>Finestra Principale</b></big>");
-    gtk_box_pack_start(GTK_BOX(vbox), welcome_label, FALSE, FALSE, 0); // Non espandere, non riempire
+    gtk_label_set_markup(GTK_LABEL(label), "<big><b>Finestra Principale</b></big>");
+    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0); // Non espandere, non riempire
 
     // Crea il primo pulsante
     builder_button = gtk_button_new_with_label("Apri Builder Window");
@@ -84,7 +83,7 @@ GtkWindow *create_main_window(GtkApplication *app)
     gtk_box_pack_start(GTK_BOX(vbox), exit_button, TRUE, TRUE, 0);
     g_signal_connect_swapped(exit_button, "clicked", G_CALLBACK(gtk_widget_destroy), main_window);
 
-    // Mostra tutti i widget nella finestra principale
+    // Mostra la finestra
     gtk_widget_show_all(main_window);
 
     return GTK_WINDOW(main_window);
